@@ -1,28 +1,26 @@
 'use strict';
 
-var app = angular.module('myApp.login', ['ngRoute','ngAnimate','ngMessages'])
+var app = angular.module('myApp.login', ['ngRoute','ngAnimate','ngMessages']);
 
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/login', {
-    templateUrl: 'partials/login/login.html',
-    controller: 'loginCtrl'
-  });
-}])
+/* Controllers and directives */
 
-.controller('loginCtrl', ['$scope', function ($scope,loginService)  {
-
-		this.msgtxt='';
+app.controller('loginCtrl', ['$scope', 'loginService', function ($scope,loginService)  {
+		$scope.msgtxt='';
 		$scope.login=function(data){
 			loginService.login(data,$scope); //call login service
 		};
-
 }])
 
-.controller('signupCtrl', [function(){
+.controller('signupCtrl', ['$scope', 'signupService', function ($scope,signupService)  {
 
 		var ctrl = this;
 		ctrl.showEmailPrompt = false;
         ctrl.showUsernamePrompt = false;
+        $scope.msgtxt='';
+
+        $scope.signup = function(data){
+				signupService.signup(data,$scope); //call signup service
+		};
 
 		ctrl.showMessages = function (field) {
         return ctrl.signupForm[field].$touched || ctrl.signupForm.$submitted
@@ -44,11 +42,9 @@ var app = angular.module('myApp.login', ['ngRoute','ngAnimate','ngMessages'])
         	return ctrl.signupForm.showPassword ? 'text' : 'password';
         };
 
-        ctrl.signup = function(){
-
-        }
-
 }])
+
+/* Directives */
 
 .directive('loginNavbar',function(){
 	return{

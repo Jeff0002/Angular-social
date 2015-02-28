@@ -3,7 +3,7 @@
                 Thank you! Your account has been created.
 </div>
 
-<form class="col-lg-6 col-lg-push-3" name="ctrl.signupForm" ng-submit="ctrl.signup()" novalidate>
+<form class="col-lg-6 col-lg-push-3" name="ctrl.signupForm" ng-submit="ctrl.signup(ctrl.newCustomer)" novalidate>
     <legend>Sign up</legend>
         <div class="form-group" ng-class="{'has-error':ctrl.hasErrorClass('email')}">
             <label for="email">Email</label>

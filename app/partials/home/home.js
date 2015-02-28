@@ -1,14 +1,11 @@
 'use strict';
 
-angular.module('myApp.home', ['ngRoute'])
+var app = angular.module('myApp.home', ['ngRoute'])
 
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/home', {
-    templateUrl: 'home/home.html',
-    controller: 'homeCtrl'
-  });
-}])
 
-.controller('homeCtrl', [function() {
-
+app.controller('homeCtrl', ['$scope','loginService',function ($scope,loginService) {
+	$scope.txt='Page Home';
+	$scope.logout=function(){
+		loginService.logout();
+	}
 }]);
