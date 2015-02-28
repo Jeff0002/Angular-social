@@ -48,10 +48,12 @@ app.factory('loginService',function($http, $location, sessionService){
                     console.log(scope.msgtxt);
                     sessionService.set('uid',uid);
                     $location.path('/home');
+                    toastr.success('Welcome','Login successful');
                 }          
                 else  {
                     scope.msgtxt='incorrect information';
                     console.log(scope.msgtxt);
+                    toastr.error('Did you forget?', 'Incorrect user information');
                     $location.path('/login');
                 }                  
             });
@@ -59,6 +61,7 @@ app.factory('loginService',function($http, $location, sessionService){
         logout:function(){
             sessionService.destroy('uid');
             $location.path('/login');
+            toastr.info('','Logout successful');
         },
         islogged:function(){
             var $checkSessionServer=$http.post('data/check_session.php');
@@ -82,21 +85,18 @@ app.factory('signupService',function($http, $location, sessionService){
 });
 
 app.run(function($rootScope, $location, loginService){
-    var routespermission=['/home'];  //route that require login
+    var routelogin=['/home'];  //route that require login
+    var routelogged=['/login'];  //route that require logged out
+
     $rootScope.$on('$routeChangeStart', function(){
-        if( routespermission.indexOf($location.path()) !=-1)
+        if( routelogin.indexOf($location.path()) !=-1)
         {
             var connected=loginService.islogged();
             connected.then(function(msg){
                 if(!msg.data) $location.path('/login');
             });
         }
-    });
-});
 
-app.run(function($rootScope, $location, loginService){
-    var routelogged=['/login'];  //route that require login
-    $rootScope.$on('$routeChangeStart', function(){
         if( routelogged.indexOf($location.path()) !=-1)
         {
             var connected=loginService.islogged();
@@ -105,4 +105,6 @@ app.run(function($rootScope, $location, loginService){
             });
         }
     });
+
 });
+
