@@ -11,7 +11,7 @@ $app->get('/session', function() {
 $app->post('/login', function() use ($app) {
     require_once 'passwordHash.php';
     $r = json_decode($app->request->getBody());
-    verifyRequiredParams(array('email', 'password'),$r->customer);
+    //verifyRequiredParams(array('email', 'password'),$r->customer);
     $response = array();
     $db = new DbHandler();
     $password = $r->customer->password;

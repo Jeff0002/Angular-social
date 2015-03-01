@@ -3,12 +3,12 @@
                 Thank you! Your account has been created.
 </div>
 
-<form class="col-lg-6 col-lg-push-3" name="ctrl.signupForm" ng-submit="ctrl.signup(ctrl.newCustomer)" novalidate>
+<form class="col-lg-6 col-lg-push-3" name="ctrl.signupForm" novalidate>
     <legend>Sign up</legend>
         <div class="form-group" ng-class="{'has-error':ctrl.hasErrorClass('email')}">
             <label for="email">Email</label>
             <input id="email" name="email" class="form-control" type="email" required 
-                    ng-model="ctrl.newCustomer.email" 
+                    ng-model="newCustomer.email" 
                     ng-model-options="{ updateOn : 'default blur' }" 
                     ng-focus="ctrl.toggleEmailPrompt(true)" 
                     ng-blur="ctrl.toggleEmailPrompt(false)"/>
@@ -32,7 +32,7 @@
                 <div class="form-group" ng-class="{'has-error':ctrl.hasErrorClass('userName')}">
                     <label for="userName">Username</label>
                     <input id="userName" name="userName" class="form-control" type="text" required
-                           ng-model="ctrl.newCustomer.userName" ng-model-options="{ updateOn : 'default blur' }"
+                           ng-model="newCustomer.name" ng-model-options="{ updateOn : 'default blur' }"
                            ng-focus="ctrl.toggleUsernamePrompt(true)" ng-blur="ctrl.toggleUsernamePrompt(false)"/>
 
                     <div class="my-messages">
@@ -55,7 +55,7 @@
                         <input id="password" name="password" class="form-control" required
                                type="{{ctrl.getPasswordType()}}"
                                ng-model-options="{ updateOn : 'default blur' }"
-                               ng-model="ctrl.newCustomer.password"
+                               ng-model="newCustomer.password"
                                validate-password-characters/>
                         <span class="input-group-addon">
                             <input type="checkbox" ng-model="ctrl.signupForm.showPassword"> Show
@@ -85,5 +85,5 @@
                     </div>
                 </div>
 
-                <button class="btn btn-primary" type="submit" data-ng-disabled="ctrl.signupForm.$invalid">Create My Account</button>
+                <button class="btn btn-primary" type="submit" data-ng-disabled="ctrl.signupForm.$invalid" ng-click="signup(newCustomer)">Create My Account</button>
             </form>

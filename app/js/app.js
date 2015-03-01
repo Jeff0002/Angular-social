@@ -36,13 +36,13 @@ app.factory('sessionService', ['$http', function($http){
 }]);
 
 app.factory('Data', ['$http',function ($http, toaster) { 
-
 // This service connects to our REST API
-
         var serviceBase = 'api/v1/';
 
         var obj = {};
-
+         obj.toast = function (data) {
+            toastr.success(data.status, data.message);
+        }
         obj.get = function (q) {
             return $http.get(serviceBase + q).then(function (results) {
                 return results.data;
@@ -67,15 +67,17 @@ app.factory('Data', ['$http',function ($http, toaster) {
         return obj;
 }]);
 
-app.factory('loginService',function($http, $location, sessionService){
+app.factory('loginService',function ($http, $location, sessionService){
     return{
         login:function(data,scope){
+            
             var $promise=$http.post('data/login.php',data); //send data to user.php
 
             $promise.then(function(msg){
                 var uid = msg.data;
-                console.log(uid);
+
                 if(uid){
+                  
                     scope.msgtxt='Correct information';
                     console.log(scope.msgtxt);
                     sessionService.set('uid',uid);
@@ -111,6 +113,24 @@ app.factory('signupService',function($http, $location, sessionService){
     return{
         signup:function(data,scope){
             var $promise=$http.post('data/adduser.php',data); //send data to adduser.php
+
+            $promise.then(function(msg){
+                var uid = msg.data;
+                console.log(uid);
+                if(uid){
+                    scope.msgtxt='Done';
+                    console.log(scope.msgtxt);
+                    sessionService.set('uid',uid);
+                    $location.path('/home');
+                    toastr.success('Welcome','Success');
+                }          
+                else  {
+                    scope.msgtxt='Already exists';
+                    console.log(scope.msgtxt);
+                    toastr.error('Error', 'User already exists');
+                    $location.path('/login');
+                }                  
+            });
         }
     }
 

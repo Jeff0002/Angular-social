@@ -2,7 +2,7 @@
 	require_once '../api/v1/dbHandler.php';
 	require_once '../api/v1/passwordHash.php';
 
-	$inp=json_decode(file_get_contents('php://input'));  //get user from 
+	$inp = json_decode(file_get_contents('php://input'));  //get user from 
 	
 	$db = new DbHandler();
 	$email = $inp->mail;
@@ -16,7 +16,7 @@
 		}
 */
 
-	if ($user != NULL) {
+if ($user != NULL) {
         if(passwordHash::check_password($user['password'],$password)){
         $response['status'] = "success";
         $response['message'] = 'Logged in successfully.';
@@ -28,18 +28,19 @@
             session_start();
         }
         $_SESSION['uid'] = $user['uid'];
-        
-        $_SESSION['email'] = $email;
+        $_SESSION['email'] = $user['email'];
         $_SESSION['name'] = $user['name'];
+        
+        print $_SESSION['uid'];
+
         } else {
             $response['status'] = "error";
             $response['message'] = 'Login failed. Incorrect credentials';
         }
-    }else {
+        }else {
             $response['status'] = "error";
             $response['message'] = 'No such user is registered';
         }
 
-
-    
 ?>
+

@@ -4,11 +4,22 @@ var app = angular.module('myApp.login', ['ngRoute','ngAnimate','ngMessages']);
 
 /* Controllers and directives */
 
-app.controller('loginCtrl', ['$scope', 'loginService', function ($scope,loginService)  {
+app.controller('loginCtrl', ['$scope', 'loginService', 'Data',function ($scope,loginService,Data)  {
 		$scope.msgtxt='';
 		$scope.login=function(data){
 			loginService.login(data,$scope); //call login service
 		};
+
+       /* $scope.login = function (customer) {
+        Data.post('login', {
+            customer: customer
+        }).then(function (results) {
+            Data.toast(results);
+            if (results.status == "success") {
+                $location.path('home');
+                }
+            });
+        };*/
 }])
 
 .controller('signupCtrl', ['$scope', 'signupService', function ($scope,signupService)  {
