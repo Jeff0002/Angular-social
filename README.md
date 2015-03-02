@@ -1,38 +1,37 @@
-# angular-seed — the seed for AngularJS apps
+# angular-social — the AngularJS seed for social networks.
 
-This project is an application skeleton for a typical [AngularJS](http://angularjs.org/) web app.
+This project is an application skeleton for a [AngularJS](http://angularjs.org/) social network web application.
 
-The seed contains a sample AngularJS application and is preconfigured to install the Angular
-framework and a bunch of development and testing tools for instant web development gratification.
+This project contains source code for user registration and user login for your social network. Build with Bootstrap.
 
-The seed app doesn't do much, just shows how to wire two controllers and views together.
+Server side implemented using slim PHP framework.
 
 
 ## Getting Started
 
-To get you started you can simply clone the angular-seed repository and install the dependencies:
+To get you started you can simply clone the angular-social repository and install the dependencies:
 
 ### Prerequisites
 
 You need git to clone the angular-seed repository. You can get git from
 [http://git-scm.com/](http://git-scm.com/).
 
-We also use a number of node.js tools to initialize and test angular-seed. You must have node.js and
+We also use a number of node.js tools to initialize and test angular-social. You must have node.js and
 its package manager (npm) installed.  You can get them from [http://nodejs.org/](http://nodejs.org/).
 
-### Clone angular-seed
+### Clone angular-social
 
-Clone the angular-seed repository using [git][git]:
+Clone the angular-social repository using [git][git]:
 
 ```
-git clone https://github.com/angular/angular-seed.git
-cd angular-seed
+git clone https://github.com/midhunadarvin/angular-social.git
+cd angular-social
 ```
 
-If you just want to start a new project without the angular-seed commit history then you can do:
+If you just want to start a new project without the angular-social commit history then you can do:
 
 ```bash
-git clone --depth=1 https://github.com/angular/angular-seed.git <your-project-name>
+git clone --depth=1 https://github.com/midhunadarvin/angular-social.git <your-project-name>
 ```
 
 The `depth=1` tells git to only pull down one commit worth of historical data.
@@ -139,7 +138,7 @@ npm run test-single-run
 
 ### End to end testing
 
-The angular-seed app comes with end-to-end tests, again written in [Jasmine][jasmine]. These tests
+The angular-social app comes with end-to-end tests, again written in [Jasmine][jasmine]. These tests
 are run with the [Protractor][protractor] End-to-End test runner.  It uses native events and has
 special features for Angular applications.
 
