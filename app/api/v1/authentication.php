@@ -14,8 +14,8 @@ $app->post('/login', function() use ($app) {
     //verifyRequiredParams(array('email', 'password'),$r->customer);
     $response = array();
     $db = new DbHandler();
-    $password = $r->customer->password;
-    $email = $r->customer->email;
+    $password = $r->customer->pass;
+    $email = $r->customer->mail;
     $user = $db->getOneRecord("select uid,name,password,email,created from customers_auth where phone='$email' or email='$email'");
     if ($user != NULL) {
         if(passwordHash::check_password($user['password'],$password)){
@@ -44,19 +44,19 @@ $app->post('/login', function() use ($app) {
 $app->post('/signUp', function() use ($app) {
     $response = array();
     $r = json_decode($app->request->getBody());
-    verifyRequiredParams(array('email', 'name', 'password'),$r->customer);
+    //verifyRequiredParams(array('email', 'name', 'password'),$r->customer);
     require_once 'passwordHash.php';
     $db = new DbHandler();
-    $phone = $r->customer->phone;
+   
     $name = $r->customer->name;
     $email = $r->customer->email;
-    $address = $r->customer->address;
     $password = $r->customer->password;
-    $isUserExists = $db->getOneRecord("select 1 from customers_auth where phone='$phone' or email='$email'");
+
+    $isUserExists = $db->getOneRecord("select 1 from customers_auth where email='$email'");
     if(!$isUserExists){
         $r->customer->password = passwordHash::hash($password);
         $tabble_name = "customers_auth";
-        $column_names = array('phone', 'name', 'email', 'password', 'city', 'address');
+        $column_names = array('name', 'email', 'password');
         $result = $db->insertIntoTable($r->customer, $column_names, $tabble_name);
         if ($result != NULL) {
             $response["status"] = "success";
@@ -66,7 +66,6 @@ $app->post('/signUp', function() use ($app) {
                 session_start();
             }
             $_SESSION['uid'] = $response["uid"];
-            $_SESSION['phone'] = $phone;
             $_SESSION['name'] = $name;
             $_SESSION['email'] = $email;
             echoResponse(200, $response);

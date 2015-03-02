@@ -67,6 +67,28 @@ app.factory('Data', ['$http',function ($http, toaster) {
         return obj;
 }]);
 
+ app.run(function ($rootScope, $location, Data) {
+        $rootScope.$on("$routeChangeStart", function (event, next, current) {
+            $rootScope.authenticated = false;
+            Data.get('session').then(function (results) {
+                if (results.uid) {
+                    $rootScope.authenticated = true;
+                    $rootScope.uid = results.uid;
+                    $rootScope.name = results.name;
+                    $rootScope.email = results.email;
+                } else {
+                    var nextUrl = next.$$route.originalPath;
+                    if (nextUrl == '/signup' || nextUrl == '/login') {
+
+                    } else {
+                        $location.path("/login");
+                    }
+                }
+            });
+        });
+    });
+
+/*
 app.factory('loginService',function ($http, $location, sessionService){
     return{
         login:function(data,scope){
@@ -100,10 +122,10 @@ app.factory('loginService',function ($http, $location, sessionService){
         islogged:function(){
             var $checkSessionServer=$http.post('data/check_session.php');
             return $checkSessionServer;
-            /*
-            if(sessionService.get('user')) return true;
-            else return false;
-            */
+            
+            //if(sessionService.get('user')) return true;
+            //else return false;
+            
         }
     }
 
@@ -134,9 +156,9 @@ app.factory('signupService',function($http, $location, sessionService){
         }
     }
 
-});
+});*/
 
-app.run(function($rootScope, $location, loginService){
+/*app.run(function ($rootScope, $location, loginService){
     var routelogin=['/home'];  //route that require login
     var routelogged=['/login'];  //route that require logged out
 
@@ -158,5 +180,4 @@ app.run(function($rootScope, $location, loginService){
         }
     });
 
-});
-
+});*/

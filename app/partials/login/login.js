@@ -4,34 +4,45 @@ var app = angular.module('myApp.login', ['ngRoute','ngAnimate','ngMessages']);
 
 /* Controllers and directives */
 
-app.controller('loginCtrl', ['$scope', 'loginService', 'Data',function ($scope,loginService,Data)  {
+app.controller('loginCtrl', ['$scope', '$location','Data', '$rootScope',function ($scope,$location,Data,$rootScope)  {
 		$scope.msgtxt='';
-		$scope.login=function(data){
+		/*$scope.login=function(data){
 			loginService.login(data,$scope); //call login service
-		};
+		};*/
 
-       /* $scope.login = function (customer) {
+        $scope.login = function (customer) {
         Data.post('login', {
             customer: customer
         }).then(function (results) {
             Data.toast(results);
+            
             if (results.status == "success") {
-                $location.path('home');
+                $rootScope.name = results.name;
+                $location.path('/home');
                 }
             });
-        };*/
+        };
 }])
 
-.controller('signupCtrl', ['$scope', 'signupService', function ($scope,signupService)  {
+.controller('signupCtrl', ['$scope', '$location', 'Data', '$rootScope',function ($scope,$location,Data,$rootScope)   {
 
 		var ctrl = this;
 		ctrl.showEmailPrompt = false;
         ctrl.showUsernamePrompt = false;
         $scope.msgtxt='';
 
-        $scope.signup = function(data){
-				signupService.signup(data,$scope); //call signup service
-		};
+    $scope.signup = function (customer) {
+        Data.post('signUp', {
+            customer: customer
+        }).then(function (results) {
+            Data.toast(results);
+            if (results.status == "success") {
+                $location.path('/home');
+            }
+        });
+    };
+ 
+		
 
 		ctrl.showMessages = function (field) {
         return ctrl.signupForm[field].$touched || ctrl.signupForm.$submitted
