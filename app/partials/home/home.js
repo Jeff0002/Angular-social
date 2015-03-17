@@ -11,4 +11,12 @@ app.controller('homeCtrl', ['$scope','$location','Data',function ($scope,$locati
             $location.path('login');
         });
     }
-}]);
+}])
+
+/* Directives */
+
+.directive('homeSidebar',function(){
+	return{
+		templateUrl: 'partials/home/sidebar.html'
+	}
+});
