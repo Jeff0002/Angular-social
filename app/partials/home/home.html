@@ -1,7 +1,12 @@
-<div home-sidebar></div>
-<div class="container-fluid wrap">
-	<p>This is the partial for home.</p>
-	<p>Hello {{name}}.How are you doing today?</p>
-	<a href="" ng-click="logout()">Logout</a>
-</div>
+<link rel="stylesheet" type="text/css" href="css/home.css">
+<div home-navbar></div>
+<div class="container-fluid content" id="content">
 
+		<div home-sidebar></div>
+		<div>
+			<p>This is the partial for home.</p>
+			<p>Hello {{name}}.How are you doing today?</p>
+			<button id="showLeftPush">Show/Hide Left Push Menu</button>
+			<button href="" ng-click="logout()">Logout</button>
+		</div>
+</div>

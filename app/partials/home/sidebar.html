@@ -1,10 +1,22 @@
-<nav class="st-menu st-effect-1" id="menu-1">
-				<h2 class="icon icon-lab">Sidebar</h2>
-				<ul>
-					<li><a class="icon icon-data" href="#">Data Management</a></li>
-					<li><a class="icon icon-location" href="#">Location</a></li>
-					<li><a class="icon icon-study" href="#">Study</a></li>
-					<li><a class="icon icon-photo" href="#">Collections</a></li>
-					<li><a class="icon icon-wallet" href="#">Credits</a></li>
-				</ul>
+<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+			<h3>Menu</h3>
+			<a href="#">Celery seakale</a>
+			<a href="#">Dulse daikon</a>
+			<a href="#">Zucchini garlic</a>
+			<a href="#">Catsear azuki bean</a>
+			<a href="#">Dandelion bunya</a>
+			<a href="#">Rutabaga</a>
 </nav>
+
+<script>
+	var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
+	    showLeftPush = document.getElementById( 'showLeftPush' ),
+		content= document.getElementById('content');
+
+
+			showLeftPush.onclick = function() {
+				classie.toggle( this, 'active' );
+				classie.toggle( content, 'cbp-spmenu-push-toright' );
+				classie.toggle( menuLeft, 'cbp-spmenu-open' );
+			};
+</script>
