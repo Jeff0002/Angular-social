@@ -1,22 +1,9 @@
 <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
 			<h3>Menu</h3>
-			<a href="#">Celery seakale</a>
-			<a href="#">Dulse daikon</a>
-			<a href="#">Zucchini garlic</a>
-			<a href="#">Catsear azuki bean</a>
-			<a href="#">Dandelion bunya</a>
-			<a href="#">Rutabaga</a>
+			<a ng-click="setfeed(0)">Trending</a>
+			<a ng-click="setfeed(1)">Latest News</a>
+			<a ng-click="setfeed(2)">Flip-flop kart</a>
+			<a ng-click="setfeed(3)">Quora-clone</a>
+			<a ng-click="setfeed(4)">Debates</a>
+			<a ng-click="setfeed(5)">default</a>
 </nav>
-
-<script>
-	var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
-	    showLeftPush = document.getElementById( 'showLeftPush' ),
-		content= document.getElementById('content');
-
-
-			showLeftPush.onclick = function() {
-				classie.toggle( this, 'active' );
-				classie.toggle( content, 'cbp-spmenu-push-toright' );
-				classie.toggle( menuLeft, 'cbp-spmenu-open' );
-			};
-</script>

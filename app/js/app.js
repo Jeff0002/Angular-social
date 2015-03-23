@@ -67,7 +67,7 @@ app.factory('Data', ['$http',function ($http, toaster) {
         return obj;
 }]);
 
- app.run(function ($rootScope, $location, Data) {
+ app.run(function ($rootScope, $location, Data, $window) {
         $rootScope.$on("$routeChangeStart", function (event, next, current) {
             $rootScope.authenticated = false;
             Data.get('session').then(function (results) {

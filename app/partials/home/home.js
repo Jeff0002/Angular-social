@@ -1,30 +1,39 @@
 'use strict';
 
-
-/*var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
-				content = document.getElementById('content');
-
- $(".menu-toggle").click(function(e) {
-        e.preventDefault();
-        $('#content').toggleClass('cbp-spmenu-push-toright' );
-        $('#cbp-spmenu-s1').toggleClass('cbp-spmenu-open');
-        classie.toggle( content, 'cbp-spmenu-push-toright' );
-		classie.toggle( menuLeft, 'cbp-spmenu-open' );
- });*/
-
-	
-
-var app = angular.module('myApp.home', ['ngRoute'])
+var app = angular.module('myApp.home', ['ngRoute','ngAnimate']);
 
 
 app.controller('homeCtrl', ['$scope','$location','Data',function ($scope,$location,Data) {
+
+	$scope.items = ['trend', 'news', 'ecommerce','quora','debate','other'];
+	$scope.selection = $scope.items[0];
+	
+	$scope.setfeed = function(val){
+		$scope.selection = $scope.items[val];
+	};
 
 	$scope.logout = function () {
         Data.get('logout').then(function (results) {
             Data.toast(results);
             $location.path('login');
         });
-    }
+    };
+
+    $scope.menutoggle = function () {
+       
+	        $('#content').toggleClass('cbp-spmenu-push-toright' );
+	        $('#cbp-spmenu-s1').toggleClass('cbp-spmenu-open');
+    };
+
+    $scope.hidemenu =function(){
+    		$('#content').removeClass('cbp-spmenu-push-toright' );
+	        $('#cbp-spmenu-s1').removeClass('cbp-spmenu-open');
+    };
+}]);
+
+app.controller('newsfeedCtrl',['$scope','$location',function ($scope,$location){
+
+
 }]);
 
 /* Directives */
@@ -38,5 +47,12 @@ app.directive('homeSidebar',function(){
 app.directive('homeNavbar',function(){
 	return{
 		templateUrl: 'partials/home/navbar.html'
+	}
+});
+
+app.directive('newsFeed',function(){
+	return{
+		templateUrl: 'partials/newsfeed/newsfeed.html',
+		controller: 'newsfeedCtrl'
 	}
 });
