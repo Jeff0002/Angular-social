@@ -1,5 +1,5 @@
 'use strict';
-
+  
 // Declare app level module which depends on views, and components
 var app = angular.module('myApp', ['ngRoute','myApp.login','myApp.home','myApp.version']);
 
@@ -68,6 +68,8 @@ app.factory('Data', ['$http',function ($http, toaster) {
 }]);
 
  app.run(function ($rootScope, $location, Data, $window) {
+
+        
         $rootScope.$on("$routeChangeStart", function (event, next, current) {
             $rootScope.authenticated = false;
             Data.get('session').then(function (results) {
@@ -79,11 +81,11 @@ app.factory('Data', ['$http',function ($http, toaster) {
                         $location.path('/home');
                     } else {
                         $location.path('/login');
-                    }
-                
+                    }    
             });
         });
-    });
+
+});
 
 /*
 app.factory('loginService',function ($http, $location, sessionService){
