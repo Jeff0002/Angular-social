@@ -41,6 +41,7 @@ $app->post('/login', function() use ($app) {
         }
     echoResponse(200, $response);
 });
+
 $app->post('/signUp', function() use ($app) {
     $response = array();
     $r = json_decode($app->request->getBody());
@@ -80,6 +81,62 @@ $app->post('/signUp', function() use ($app) {
         echoResponse(201, $response);
     }
 });
+
+$app->post('/loginfb', function() use ($app) {
+    $response = array();
+    $r = json_decode($app->request->getBody());
+    //verifyRequiredParams(array('email', 'name', 'password'),$r->customer);
+
+    $db = new DbHandler();
+   
+    $name = $r->customer->name;
+    $email = $r->customer->email;
+    $fb_id = $r->customer->id;
+
+    $isUserExists = $db->getOneRecord("select 1 from customers_auth where email='$email'");
+
+    if(!$isUserExists){
+        // User doesn't exist, we need to create a account
+        $tabble_name = "customers_auth";
+        $column_names = array('name', 'email', 'fb_id');
+        $result = $db->insertIntoTable($r->customer, $column_names, $tabble_name);
+        if ($result != NULL) {
+            $response["status"] = "success";
+            $response["message"] = "User account created successfully";
+            $response["uid"] = $result;
+            if (!isset($_SESSION)) {
+                session_start();
+            }
+            $_SESSION['uid'] = $response["uid"];
+            $_SESSION['name'] = $name;
+            $_SESSION['email'] = $email;
+            echoResponse(200, $response);
+        } else {
+            $response["status"] = "error";
+            $response["message"] = "Failed to create customer. Please try again";
+            echoResponse(201, $response);
+        }            
+    }else{
+        // User with email exists, so either add fb_id or check fb_id
+        $user = $db->getOneRecord("select uid,name,fb_id,email,created from customers_auth where email='$email' or fb_id='$fb_id'");
+
+        $response['status'] = "success";
+        $response['message'] = 'Logged in successfully.';
+        $response['name'] = $user['name'];
+        $response['uid'] = $user['uid'];
+        $response['email'] = $user['email'];
+        $response['createdAt'] = $user['created'];
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        $_SESSION['uid'] = $user['uid'];
+        $_SESSION['email'] = $email;
+        $_SESSION['name'] = $user['name'];
+        echoResponse(200, $response);
+    }
+});
+
+
 $app->get('/logout', function() {
     $db = new DbHandler();
     $session = $db->destroySession();

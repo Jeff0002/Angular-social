@@ -3,6 +3,19 @@
                 Thank you! Your account has been created.
 </div>
 <form class="col-lg-6 col-lg-push-3" name="ctrl.signupForm" novalidate>
+    <div class="row container-fluid" style="margin-bottom:15px;">
+        <div class="col-lg-6">
+            <button class="btn btn-block btn-social btn-facebook" ng-click="loginfb()">
+            <i class="fa fa-facebook"></i> Sign in with Facebook
+            </button>
+        </div>
+        <div class="col-lg-6">
+            <button class="btn btn-block btn-social btn-google-plus" ng-click="share()">
+            <i class="fa fa-google-plus"></i> Sign in with Google
+            </button>
+        </div>
+    </div>
+    <hr/>
     <legend>Sign up</legend>
         <div class="form-group" ng-class="{'has-error':ctrl.hasErrorClass('email')}">
             <label for="email">Email</label>

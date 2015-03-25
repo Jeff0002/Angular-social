@@ -69,6 +69,26 @@ app.factory('Data', ['$http',function ($http, toaster) {
 
  app.run(function ($rootScope, $location, Data, $window) {
 
+        window.fbAsyncInit = function() {
+            FB.init({
+              appId      : '401788873326306',
+              xfbml      : true,
+              version    : 'v2.2'
+            });
+
+            FB.getLoginStatus(function(response) {
+                $rootScope.statusChangeCallback(response);
+            });
+        };
+
+        (function(d, s, id){
+             var js, fjs = d.getElementsByTagName(s)[0];
+             if (d.getElementById(id)) {return;}
+             js = d.createElement(s); js.id = id;
+             js.src = "//connect.facebook.net/en_US/sdk.js";
+             fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
         
         $rootScope.$on("$routeChangeStart", function (event, next, current) {
             $rootScope.authenticated = false;
