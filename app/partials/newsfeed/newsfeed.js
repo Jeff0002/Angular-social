@@ -1,3 +1,28 @@
+var app = angular.module('myApp.home.newsfeed', ['ngRoute','ngAnimate']);
+
+app.controller('newsfeedCtrl',['$scope','$location',function ($scope,$location){
+
+
+	$scope.tab =0;
+	$scope.setTab = function(tabno){
+			this.tab = tabno;
+	};
+	$scope.isSet = function(check){
+			return this.tab===check;
+	};
+}]);
+
+app.controller('statusCtrl',['$scope','$location',function ($scope,$location){
+	$scope.posts = values;
+}]);
+
+app.directive('statusUpdate',function(){
+	return{
+		templateUrl: 'partials/newsfeed/statusupdate.html',
+		controller: 'statusCtrl'
+	}
+});
+
 var values = [{
 		title: "Midhun Darvin",
 		img_thumb: "img/profile_default_thumb.jpg",
@@ -43,16 +68,5 @@ var values = [{
 			email:"md@gmail.com",
 			body:"Third post comment"
 		}]
-	}];
-
-var newsfeed = angular.module('myApp.newsfeed',['ngRoute', 'ngAnimate']);
-
-newsfeed.controller('newsCtrl', ['$scope','$rootScope',function ($scope,$rootScope)  {
-			$scope.posts = values;
-      		
-}]);
-
-
-	
-
-
+	}
+	]

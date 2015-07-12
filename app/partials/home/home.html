@@ -2,20 +2,13 @@
 <div home-navbar></div>
 <div home-sidebar></div>
 <div class="container-fluid content" id="content" ng-click="hidemenu()">
-		<!--<div>
-			<p>This is the partial for home.</p>
-			<p>Hello {{name}}.How are you doing today?</p>
-		</div> -->
-<!--	  <select ng-model="selection" ng-options="item for item in items"></select>	-->
-	 
-	
-	  <div class="animate-switch-container " ng-switch on="selection">
-	      <div class="animate-switch" ng-switch-when="trend">Trending topics</div>
-	      <div class="animate-switch" ng-switch-when="news">News feed</div>
-	      <div class="animate-switch" ng-switch-when="ecommerce">Ecommerce module</div>
-	      <div class="animate-switch" ng-switch-when="quora">question and seek answers</div>
-	      <div class="animate-switch" ng-switch-when="debate">Debates</div>
-	      <div class="animate-switch" ng-switch-default>default</div>
+	  <div class="container-fluid" ng-switch on="selection">
+	      <div class="" ng-switch-when="trend">Welcome {{name}}</div>
+	      <div class="" ng-switch-when="news"><div news-feed></div></div>
+	      <div class="" ng-switch-when="ecommerce">Ecommerce module</div>
+	      <div class="" ng-switch-when="quora">question and seek answers</div>
+	      <div class="" ng-switch-when="debate">Debates</div>
+	      <div class="" ng-switch-default>default</div>
 	  </div>
 	  <tt>selection={{selection}}</tt>
 </div>

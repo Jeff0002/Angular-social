@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('myApp.home', ['ngRoute','ngAnimate']);
+var app = angular.module('myApp.home', ['ngRoute','myApp.home.newsfeed','ngAnimate']);
 
 
 app.controller('homeCtrl', ['$scope','$location','Data',function ($scope,$location,Data) {
@@ -10,6 +10,7 @@ app.controller('homeCtrl', ['$scope','$location','Data',function ($scope,$locati
 	
 	$scope.setfeed = function(val){
 		$scope.selection = $scope.items[val];
+		$scope.hidemenu();
 	};
 
 	$scope.logout = function () {
@@ -29,11 +30,6 @@ app.controller('homeCtrl', ['$scope','$location','Data',function ($scope,$locati
     		$('#content').removeClass('cbp-spmenu-push-toright' );
 	        $('#cbp-spmenu-s1').removeClass('cbp-spmenu-open');
     };
-}]);
-
-app.controller('newsfeedCtrl',['$scope','$location',function ($scope,$location){
-
-
 }]);
 
 /* Directives */

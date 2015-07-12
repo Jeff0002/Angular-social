@@ -1,11 +1,8 @@
-
-
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
 
 /* Toggle Styles */
-
 
 body {
     padding-top: 50px;
@@ -38,9 +35,7 @@ html, body {
     background-color: #555;
 }
 
-
 .navbar{
-    background: white;
     border-bottom: 6px solid #0290EF;
 }
 

@@ -7,7 +7,7 @@
 
 .cbp-spmenu h3 {
 	color: #afdefa;
-	font-size: 1.9em;
+	font-size: 1.6em;
 	padding: 20px;
 	margin: 0;
 	font-weight: 300;
@@ -44,27 +44,6 @@
 	padding: 1em;
 }
 
-.cbp-spmenu-horizontal {
-	width: 100%;
-	height: 150px;
-	left: 0;
-	z-index: 1000;
-	overflow: hidden;
-}
-
-.cbp-spmenu-horizontal h3 {
-	height: 100%;
-	width: 20%;
-	float: left;
-}
-
-.cbp-spmenu-horizontal a {
-	float: left;
-	width: 20%;
-	padding: 0.8em;
-	border-left: 1px solid #258ecd;
-}
-
 /* Vertical menu that slides from the left or right */
 
 .cbp-spmenu-left {
@@ -87,8 +66,6 @@
 
 .content {
 	margin:10px;
-	
-	overflow-x: hidden;
 	position: relative;
 	left: 0;
 }
@@ -151,37 +128,58 @@
 	}
 }
 
+/* Facebook status Box */
 
-
-.animate-switch-container {
-  position:relative;
-  background:white;
-  border:1px solid black;
-  height:40px;
-  overflow:hidden;
+.facebook-share-box {
+	margin-top: 5px;
 }
 
-.animate-switch {
-  padding:10px;
+.facebook-share-box .share {
+	overflow: hidden;
+    background: white;
+    position: relative;
+}
+ 
+.facebook-share-box .post-types li a {
+    color: #085083;
+    text-decoration: none;
+}
+ 
+.facebook-share-box .post-types li a.active {
+    color: #404040;
 }
 
-.animate-switch.ng-animate {
-  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-
-  position:absolute;
-  top:0;
-  left:0;
-  right:0;
-  bottom:0;
+.panel-footer{
+	height:55px;
 }
 
-.animate-switch.ng-leave.ng-leave-active,
-.animate-switch.ng-enter {
-  top:-50px;
+.post{
+    border:1px solid #c2d0d3;
+    box-shadow: 5px 5px 5px #c2d0d3;
+    margin-top:20px;
+    padding: 20px;
 }
-.animate-switch.ng-leave,
-.animate-switch.ng-enter.ng-enter-active {
-  top:0;
+
+.postcontent{
+    padding:10px;
 }
+
+
+.section-wrap{
+   margin:10px;
+}
+
+.likebar{
+
+    margin:10px;
+    padding:0px;
+}
+
+.likebar li{
+    display:inline;
+}
+
+
+
+
 

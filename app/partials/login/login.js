@@ -27,7 +27,7 @@ app.controller('loginCtrl', ['$scope', '$location','Data', '$rootScope',function
            console.log(response);
 
           if (response.status === 'connected') {
-                    testAPI();
+                    checkfbuser();
           } else if (response.status === 'not_authorized') {
                 // The person is logged into Facebook, but not your app.
                 document.getElementById('status').innerHTML = 'Please log ' +
@@ -50,7 +50,7 @@ app.controller('loginCtrl', ['$scope', '$location','Data', '$rootScope',function
             // Full docs on the response object can be found in the documentation
             // for FB.getLoginStatus().
             if (response.status === 'connected') {
-                  testAPI();
+                  checkfbuser();
             } else if (response.status === 'not_authorized') {
               // The person is logged into Facebook, but not your app.
               document.getElementById('status').innerHTML = 'Please log ' +
@@ -78,13 +78,20 @@ app.controller('loginCtrl', ['$scope', '$location','Data', '$rootScope',function
 
     };
 
-    function testAPI() {
+    function checkfbuser() {
                 console.log('Welcome!  Fetching your information.... ');
                 FB.api('/me', function(response) {
                   console.log(response);
                   console.log('Successful login for: ' + response.name);
-                  document.getElementById('status').innerHTML =
-                    'Thanks for logging in, ' + response.name + '!';
+                  document.getElementById('status').innerHTML ='Thanks for logging in, ' + response.name + '!';
+                   Data.post('loginfb', { customer: response })
+                    .then(function (results) {
+                          Data.toast(results);
+                          if (results.status == "success") {
+                              $rootScope.name = results.name;
+                              $location.path('/home');
+                              }
+                  });
                 });
     }
   

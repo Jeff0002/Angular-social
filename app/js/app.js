@@ -3,8 +3,6 @@
 // Declare app level module which depends on views, and components
 var app = angular.module('myApp', ['ngRoute','myApp.login','myApp.home','myApp.version']);
 
-/* Factories */
-
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
     .when('/login', {
@@ -19,6 +17,8 @@ app.config(['$routeProvider', function($routeProvider) {
         redirectTo: '/login'
     });
 }]);
+
+/* Factories */
 
 app.factory('sessionService', ['$http', function($http){
     return{
@@ -76,9 +76,9 @@ app.factory('Data', ['$http',function ($http, toaster) {
               version    : 'v2.2'
             });
 
-            FB.getLoginStatus(function(response) {
+        /*    FB.getLoginStatus(function(response) {
                 $rootScope.statusChangeCallback(response);
-            });
+            });     */
         };
 
         (function(d, s, id){
